@@ -39,12 +39,13 @@ type OnionPortSpec struct {
 
 // NewOnionConfig is a configuration for NewOnion command.
 type NewOnionConfig struct {
-	PortSpecs    []OnionPortSpec
-	PrivateKey   crypto.PrivateKey
-	DiscardPK    bool
-	Detach       bool
-	BasicAuth    bool
-	NonAnonymous bool
+	PortSpecs      []OnionPortSpec
+	PrivateKey     crypto.PrivateKey
+	DiscardPK      bool
+	Detach         bool
+	BasicAuth      bool
+	NonAnonymous   bool
+	AwaitForUpload bool
 }
 
 // NewOnion issues an ADD_ONION command using configuration config and
