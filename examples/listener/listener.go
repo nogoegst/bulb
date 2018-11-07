@@ -14,8 +14,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/yawning/bulb"
-	"github.com/yawning/bulb/utils/pkcs1"
+	"github.com/nogoegst/bulb"
+	"github.com/nogoegst/bulb/utils/pkcs1"
 )
 
 func onionServer(w http.ResponseWriter, req *http.Request) {
@@ -56,7 +56,7 @@ func main() {
 	log.Printf("Expected ID: %v", id)
 
 	cfg := &bulb.NewOnionConfig{
-		DiscardPK: true,
+		DiscardPK:  true,
 		PrivateKey: pk,
 	}
 	l, err := c.NewListener(cfg, 80)
