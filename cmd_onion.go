@@ -46,6 +46,7 @@ type NewOnionConfig struct {
 	BasicAuth      bool
 	NonAnonymous   bool
 	AwaitForUpload bool
+	ServiceVersion string
 }
 
 // NewOnion issues an ADD_ONION command using configuration config and
@@ -90,6 +91,16 @@ func (c *Conn) NewOnion(config *NewOnionConfig) (*OnionInfo, error) {
 	} else {
 		hsKeyStr = "BEST"
 		hsKeyType = "NEW"
+		if config.ServiceVersion != "" {
+			switch config.ServiceVersion {
+			case "v2":
+				hsKeyStr = "RSA1024"
+			case "v3":
+				hsKeyStr = "ED25519-V3"
+			default:
+				return nil, newProtocolError("unsupported service version: %s", config.ServiceVersion)
+			}
+		}
 	}
 
 	var flags []string
